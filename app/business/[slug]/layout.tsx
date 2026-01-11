@@ -11,6 +11,7 @@ export default function BusinessLayout({
 }) {
   const business = businessRegistry.find((item) => item.slug === params.slug);
 
+  // Registry-driven layout ensures consistent navigation across businesses.
   return (
     <div>
       <BusinessTabs activeSlug={params.slug} />
