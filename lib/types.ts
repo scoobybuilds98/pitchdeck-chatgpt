@@ -11,3 +11,9 @@ export interface BusinessProfile {
   summary: string;
   sections: BusinessSection[];
 }
+
+export interface BusinessMetadata extends BusinessProfile {
+  location: string;
+  stage: string;
+  lastUpdated: string;
+}
