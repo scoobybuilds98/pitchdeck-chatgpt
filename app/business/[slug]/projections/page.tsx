@@ -1,8 +1,15 @@
+import MetricHighlights from "../../../../components/narrative/MetricHighlights";
 import SectionLayout from "../../../../components/layout/SectionLayout";
 import ProjectionTable from "../../../../components/projections/ProjectionTable";
 import ProjectionTables from "../../../../components/projections/ProjectionTables";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
-import { buildProjectionYears, loadProjectionData } from "../../../../lib/projectionsData";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
+import {
+  buildProjectionYears,
+  loadProjectionData,
+} from "../../../../lib/projectionsData";
 import { loadTablesData } from "../../../../lib/tablesData";
 
 export default async function ProjectionsPage({
@@ -20,6 +27,12 @@ export default async function ProjectionsPage({
   const projectionData = await loadProjectionData(params.slug);
   const years = buildProjectionYears(projectionData);
   const tablesData = await loadTablesData(params.slug);
+
+  const metricHighlights = projectionData.metrics.slice(0, 3).map((metric) => ({
+    label: metric.label,
+    value: metric.values.at(-1)?.toLocaleString() ?? "TBD",
+    caption: "Latest forecast year",
+  }));
 
   return (
     <SectionLayout
@@ -40,13 +53,11 @@ export default async function ProjectionsPage({
         },
         {
           label: "Scenario Outputs",
-          detail:
-            "Revenue, EBITDA, cash flow, and margin trends by year.",
+          detail: "Revenue, EBITDA, cash flow, and margin trends by year.",
         },
         {
           label: "Sensitivity Analysis",
-          detail:
-            "Impact of key variable changes across multiple scenarios.",
+          detail: "Impact of key variable changes across multiple scenarios.",
         },
       ]}
       notes={[
@@ -55,6 +66,9 @@ export default async function ProjectionsPage({
         "Document assumptions in the notes section for transparency.",
       ]}
     >
+      {metricHighlights.length ? (
+        <MetricHighlights items={metricHighlights} />
+      ) : null}
       <ProjectionTable metrics={projectionData.metrics} years={years} />
       <ProjectionTables
         tables={tablesData.tables}
