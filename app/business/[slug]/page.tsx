@@ -29,6 +29,7 @@ export default function BusinessPage({ params }: { params: { slug: string } }) {
               key={section.slug}
               href={`/business/${business.slug}/${section.slug}`}
             >
+              {/* Route each section card to its dedicated page. */}
               <article className="card" style={{ padding: "20px" }}>
                 <h3 style={{ margin: "0 0 8px" }}>{section.label}</h3>
                 <p className="section-subtitle">{section.description}</p>
