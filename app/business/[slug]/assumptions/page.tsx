@@ -1,4 +1,6 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import AssumptionTable from "../../../../components/assumptions/AssumptionTable";
+import { loadAssumptionData } from "../../../../lib/assumptionsData";
 import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
 export default async function AssumptionsPage({
@@ -13,6 +15,7 @@ export default async function AssumptionsPage({
   const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
   const fallbackLead =
     "This section documents the foundational assumptions behind the projections, including pricing, volume, utilization, and cost drivers. It also captures risk factors and mitigation plans.";
+  const assumptionData = await loadAssumptionData(params.slug);
 
   return (
     <SectionLayout
@@ -47,6 +50,8 @@ export default async function AssumptionsPage({
         "Provide citations for external sources.",
         "Record owner and review cadence for each assumption.",
       ]}
-    />
+    >
+      <AssumptionTable items={assumptionData.assumptions} />
+    </SectionLayout>
   );
 }
