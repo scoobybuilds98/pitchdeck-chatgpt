@@ -1,5 +1,7 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import ChartsGrid from "../../../../components/charts/ChartsGrid";
 import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import { loadChartsData } from "../../../../lib/chartsData";
 
 export default async function ChartsPage({
   params,
@@ -13,6 +15,7 @@ export default async function ChartsPage({
   const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
   const fallbackLead =
     "This section consolidates all visualizations for quick investor review. It will feature trend charts, stacked breakdowns, and KPI dashboards derived from the projections dataset.";
+  const chartsData = await loadChartsData(params.slug);
 
   return (
     <SectionLayout
@@ -47,6 +50,8 @@ export default async function ChartsPage({
         "Add chart annotations that connect to narrative points.",
         "Include export or print options for investors.",
       ]}
-    />
+    >
+      <ChartsGrid charts={chartsData.charts} />
+    </SectionLayout>
   );
 }
