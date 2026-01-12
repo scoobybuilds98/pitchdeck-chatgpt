@@ -1,5 +1,6 @@
 import MetricHighlights from "../../../../components/narrative/MetricHighlights";
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import ProjectionSummaryCards from "../../../../components/projections/ProjectionSummaryCards";
 import ProjectionTable from "../../../../components/projections/ProjectionTable";
 import ProjectionTables from "../../../../components/projections/ProjectionTables";
 import {
@@ -8,6 +9,7 @@ import {
 } from "../../../../lib/businessData";
 import {
   buildProjectionYears,
+  getProjectionCompleteness,
   loadProjectionData,
 } from "../../../../lib/projectionsData";
 import { loadTablesData } from "../../../../lib/tablesData";
@@ -27,12 +29,31 @@ export default async function ProjectionsPage({
   const projectionData = await loadProjectionData(params.slug);
   const years = buildProjectionYears(projectionData);
   const tablesData = await loadTablesData(params.slug);
+  const completeness = getProjectionCompleteness(projectionData, years);
 
   const metricHighlights = projectionData.metrics.slice(0, 3).map((metric) => ({
     label: metric.label,
     value: metric.values.at(-1)?.toLocaleString() ?? "TBD",
     caption: "Latest forecast year",
   }));
+
+  const summaryCards = [
+    {
+      label: "Projection Horizon",
+      value: `${projectionData.timeframe.startYear}–${projectionData.timeframe.endYear}`,
+      detail: `${years.length} forecast years`,
+    },
+    {
+      label: "Scenario Coverage",
+      value: `${projectionData.scenarios.length}`,
+      detail: "Defined projection scenarios",
+    },
+    {
+      label: "Data Completeness",
+      value: `${completeness.percent}%`,
+      detail: `${completeness.filled} of ${completeness.total} values supplied`,
+    },
+  ];
 
   return (
     <SectionLayout
@@ -66,14 +87,20 @@ export default async function ProjectionsPage({
         "Document assumptions in the notes section for transparency.",
       ]}
     >
+      <ProjectionSummaryCards items={summaryCards} />
       {metricHighlights.length ? (
         <MetricHighlights items={metricHighlights} />
       ) : null}
-      <ProjectionTable metrics={projectionData.metrics} years={years} />
+      <ProjectionTable
+        metrics={projectionData.metrics}
+        years={years}
+        currency={projectionData.currency}
+      />
       <ProjectionTables
         tables={tablesData.tables}
         metrics={projectionData.metrics}
         years={years}
+        currency={projectionData.currency}
       />
     </SectionLayout>
   );

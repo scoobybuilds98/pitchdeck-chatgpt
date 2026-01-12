@@ -165,6 +165,39 @@ main {
   color: var(--text-secondary);
 }
 
+.summary-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summary-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.summary-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.summary-detail {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
 .list {
   margin: 0;
   padding-left: 20px;
@@ -181,6 +214,39 @@ main {
 
 .empty-state h3 {
   margin: 0 0 8px;
+}
+
+.source-card {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.source-list {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.source-list li {
+  display: grid;
+  gap: 4px;
+}
+
+.source-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.source-detail {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.source-detail a {
+  color: var(--text-secondary);
+  text-decoration: underline;
 }
 
 .kpi {

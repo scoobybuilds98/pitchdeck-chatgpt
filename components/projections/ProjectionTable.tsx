@@ -1,30 +1,14 @@
 import type { ProjectionMetric } from "../../lib/types";
-
-function formatValue(value: number | null, format: ProjectionMetric["format"]) {
-  if (value === null || Number.isNaN(value)) {
-    return "—";
-  }
-
-  switch (format) {
-    case "currency":
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).format(value);
-    case "percentage":
-      return `${value}%`;
-    default:
-      return new Intl.NumberFormat("en-US").format(value);
-  }
-}
+import { formatMetricValue } from "../../lib/formatters";
 
 export default function ProjectionTable({
   metrics,
   years,
+  currency,
 }: {
   metrics: ProjectionMetric[];
   years: number[];
+  currency: string;
 }) {
   return (
     <div className="card" style={{ padding: "24px" }}>
@@ -51,7 +35,7 @@ export default function ProjectionTable({
                 <td style={{ padding: "12px" }}>{metric.label}</td>
                 {years.map((year, index) => (
                   <td key={`${metric.id}-${year}`} style={{ padding: "12px", textAlign: "right" }}>
-                    {formatValue(metric.values[index] ?? null, metric.format)}
+                    {formatMetricValue(metric.values[index] ?? null, metric.format, currency)}
                   </td>
                 ))}
               </tr>

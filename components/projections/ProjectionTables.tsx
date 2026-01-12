@@ -1,29 +1,12 @@
 import type { ProjectionMetric } from "../../lib/types";
 import type { TableConfig } from "../../lib/tablesData";
-
-function formatValue(value: number | null, format: ProjectionMetric["format"]) {
-  if (value === null || Number.isNaN(value)) {
-    return "—";
-  }
-
-  switch (format) {
-    case "currency":
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).format(value);
-    case "percentage":
-      return `${value}%`;
-    default:
-      return new Intl.NumberFormat("en-US").format(value);
-  }
-}
+import { formatMetricValue } from "../../lib/formatters";
 
 function renderTable(
   table: TableConfig,
   metrics: ProjectionMetric[],
-  years: number[]
+  years: number[],
+  currency: string
 ) {
   return (
     <article key={table.id} className="card" style={{ padding: "24px" }}>
@@ -47,7 +30,7 @@ function renderTable(
                 <td style={{ padding: "12px" }}>{metric.label}</td>
                 {years.map((year, index) => (
                   <td key={`${metric.id}-${year}`} style={{ padding: "12px", textAlign: "right" }}>
-                    {formatValue(metric.values[index] ?? null, metric.format)}
+                    {formatMetricValue(metric.values[index] ?? null, metric.format, currency)}
                   </td>
                 ))}
               </tr>
@@ -63,10 +46,12 @@ export default function ProjectionTables({
   tables,
   metrics,
   years,
+  currency,
 }: {
   tables: TableConfig[];
   metrics: ProjectionMetric[];
   years: number[];
+  currency: string;
 }) {
   return (
     <section className="section-grid" style={{ marginTop: "24px" }}>
@@ -74,7 +59,7 @@ export default function ProjectionTables({
         const selectedMetrics = metrics.filter((metric) =>
           table.metrics.includes(metric.id)
         );
-        return renderTable(table, selectedMetrics, years);
+        return renderTable(table, selectedMetrics, years, currency);
       })}
     </section>
   );
