@@ -1,5 +1,7 @@
 import AssumptionSummaryCards from "../../../../components/assumptions/AssumptionSummaryCards";
 import AssumptionTable from "../../../../components/assumptions/AssumptionTable";
+import AuditTrail from "../../../../components/assumptions/AuditTrail";
+import RiskRegister from "../../../../components/assumptions/RiskRegister";
 import EmptyState from "../../../../components/layout/EmptyState";
 import SectionLayout from "../../../../components/layout/SectionLayout";
 import {
@@ -45,6 +47,8 @@ export default async function AssumptionsPage({
   ];
 
   const hasAssumptions = assumptionData.assumptions.length > 0;
+  const hasRisks = assumptionData.risks.length > 0;
+  const hasAuditTrail = assumptionData.auditTrail.length > 0;
 
   return (
     <SectionLayout
@@ -87,6 +91,22 @@ export default async function AssumptionsPage({
         <EmptyState
           title="Assumptions data pending"
           description="Add assumptions to data/businesses/mainland-truck/assumptions.json to populate the register and unlock scenario editing."
+        />
+      )}
+      {hasRisks ? (
+        <RiskRegister risks={assumptionData.risks} />
+      ) : (
+        <EmptyState
+          title="Risk register pending"
+          description="Document key risks and mitigations to complete the assumptions section for investors."
+        />
+      )}
+      {hasAuditTrail ? (
+        <AuditTrail entries={assumptionData.auditTrail} />
+      ) : (
+        <EmptyState
+          title="Audit trail pending"
+          description="Capture assumption changes and rationale to keep the deck investor-ready."
         />
       )}
     </SectionLayout>
