@@ -173,6 +173,16 @@ main {
   gap: 10px;
 }
 
+.empty-state {
+  margin-top: 24px;
+  padding: 24px;
+  text-align: left;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px;
+}
+
 .kpi {
   padding: 18px;
   border-radius: var(--radius-md);

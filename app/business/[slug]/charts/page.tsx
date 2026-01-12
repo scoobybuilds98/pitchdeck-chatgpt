@@ -1,6 +1,10 @@
-import SectionLayout from "../../../../components/layout/SectionLayout";
 import ChartsGrid from "../../../../components/charts/ChartsGrid";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import EmptyState from "../../../../components/layout/EmptyState";
+import SectionLayout from "../../../../components/layout/SectionLayout";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
 import { loadChartsData } from "../../../../lib/chartsData";
 
 export default async function ChartsPage({
@@ -16,6 +20,7 @@ export default async function ChartsPage({
   const fallbackLead =
     "This section consolidates all visualizations for quick investor review. It will feature trend charts, stacked breakdowns, and KPI dashboards derived from the projections dataset.";
   const chartsData = await loadChartsData(params.slug);
+  const hasCharts = chartsData.charts.length > 0;
 
   return (
     <SectionLayout
@@ -36,8 +41,7 @@ export default async function ChartsPage({
         },
         {
           label: "Mix Analysis",
-          detail:
-            "Breakdowns by business line, geography, or customer segment.",
+          detail: "Breakdowns by business line, geography, or customer segment.",
         },
         {
           label: "KPI Dashboard",
@@ -51,7 +55,14 @@ export default async function ChartsPage({
         "Include export or print options for investors.",
       ]}
     >
-      <ChartsGrid charts={chartsData.charts} />
+      {hasCharts ? (
+        <ChartsGrid charts={chartsData.charts} />
+      ) : (
+        <EmptyState
+          title="Charts are ready for data ingestion"
+          description="Add chart definitions to data/businesses/mainland-truck/charts.json to populate this view with investor-ready visuals."
+        />
+      )}
     </SectionLayout>
   );
 }
