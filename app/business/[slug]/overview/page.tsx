@@ -1,5 +1,9 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import BusinessSnapshot from "../../../../components/narrative/BusinessSnapshot";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
 
 export default async function OverviewPage({
   params,
@@ -47,6 +51,15 @@ export default async function OverviewPage({
         "Include supporting metrics sourced from the projections dataset.",
         "Add a concise bullet list of key achievements or traction points.",
       ]}
-    />
+    >
+      <BusinessSnapshot
+        items={[
+          { label: "Industry", value: metadata.industry },
+          { label: "Operating Base", value: metadata.location },
+          { label: "Stage", value: metadata.stage },
+          { label: "Last Updated", value: metadata.lastUpdated },
+        ]}
+      />
+    </SectionLayout>
   );
 }

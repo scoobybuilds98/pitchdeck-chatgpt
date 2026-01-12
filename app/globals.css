@@ -105,6 +105,33 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.snapshot-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.snapshot-card {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.snapshot-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.snapshot-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
 .list {
   margin: 0;
   padding-left: 20px;
