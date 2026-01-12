@@ -1,3 +1,4 @@
+import ChartDefinitionsTable from "../../../../components/charts/ChartDefinitionsTable";
 import ChartsGrid from "../../../../components/charts/ChartsGrid";
 import EmptyState from "../../../../components/layout/EmptyState";
 import SectionLayout from "../../../../components/layout/SectionLayout";
@@ -56,7 +57,10 @@ export default async function ChartsPage({
       ]}
     >
       {hasCharts ? (
-        <ChartsGrid charts={chartsData.charts} />
+        <>
+          <ChartsGrid charts={chartsData.charts} />
+          <ChartDefinitionsTable charts={chartsData.charts} />
+        </>
       ) : (
         <EmptyState
           title="Charts are ready for data ingestion"
