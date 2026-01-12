@@ -5,7 +5,7 @@ export default function OperationsPage() {
     <SectionLayout
       title="Operations"
       subtitle="Execution plan, footprint, and delivery capabilities."
-      lead="This section describes how the business executes day-to-day operations, scales capacity, and delivers consistent service quality. It will emphasize process discipline, supply chain, and operational KPIs."
+      lead="This section describes how the business executes day-to-day operations, scales capacity, and delivers consistent service quality. It emphasizes process discipline, supply chain, and operational KPIs."
       highlights={[
         "Document operational footprint and capacity planning.",
         "Outline operational KPIs and service-level targets.",

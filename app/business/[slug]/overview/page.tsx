@@ -5,7 +5,7 @@ export default function OverviewPage() {
     <SectionLayout
       title="Executive Summary"
       subtitle="Positioning the business, investment thesis, and growth story."
-      lead="This section frames the business narrative, the problem it solves, and how the team will deliver durable returns. It will align the value proposition, competitive advantage, and capital needs in one cohesive narrative."
+      lead="This section frames the business narrative, the problem it solves, and how the team will deliver durable returns. It aligns the value proposition, competitive advantage, and capital needs in a cohesive narrative."
       highlights={[
         "Define the mission, vision, and customer pain points with clarity.",
         "Summarize near-term objectives and the strategic roadmap.",

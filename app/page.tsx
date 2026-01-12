@@ -6,11 +6,11 @@ export default function HomePage() {
     <main className="page-shell">
       <section className="card hero">
         <span className="badge">Interactive Pitch Deck</span>
-        <h1>Multi-business investor narratives with live projections.</h1>
+        <h1>Investor-ready narratives with live projections.</h1>
         <p>
-          Explore each business deck, review projections, and adjust assumptions in
-          real time. Each tab is isolated with its own data, charts, and narrative
-          flow.
+          Explore the active business deck, review projections, and adjust
+          assumptions in real time. The platform is built to scale with new
+          business modules and investment theses.
         </p>
       </section>
 

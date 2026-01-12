@@ -16,13 +16,11 @@ Build a production-grade, extensible web application that presents multiple busi
    - Define JSON schemas and data templates for assumptions, projections, charts, and narrative blocks.
 3. **Global Layout & Navigation**
    - Implement app shell, business tabs, and section navigation.
-4. **Business 1: Mainland Truck (MTTS)**
+4. **Business 1: Mainland Truck & Trailer Sales & Leasing**
    - Complete all pages end-to-end using canonical schema.
-5. **Business 2: Blue Capital**
-   - Replicate structure and populate content using schema.
-6. **Editing & Persistence**
+5. **Editing & Persistence**
    - Enable editable projections with validation and storage.
-7. **Polish & QA**
+6. **Polish & QA**
    - Refine visual design, performance, and responsiveness.
 
 ## Page Inventory (Per Business)
