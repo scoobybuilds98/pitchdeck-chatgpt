@@ -1,5 +1,10 @@
+import ExecutionTimeline from "../../../../components/operations/ExecutionTimeline";
+import OperationalFocusCards from "../../../../components/operations/OperationalFocusCards";
 import SectionLayout from "../../../../components/layout/SectionLayout";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
 
 export default async function OperationsPage({
   params,
@@ -12,41 +17,86 @@ export default async function OperationsPage({
     "Operations";
   const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
   const fallbackLead =
-    "This section describes how the business executes day-to-day operations, scales capacity, and delivers consistent service quality. It emphasizes process discipline, supply chain, and operational KPIs.";
+    "This section outlines how Mainland Truck & Trailer Sales & Leasing will execute day-to-day operations, scale inventory, and deliver service quality at every location.";
 
   return (
     <SectionLayout
       title="Operations"
-      subtitle="Execution plan, footprint, and delivery capabilities."
+      subtitle="Execution plan, footprint strategy, and operational readiness."
       lead={narrative[0] ?? fallbackLead}
       narrativeParagraphs={narrative.slice(1)}
       highlights={[
-        "Document operational footprint and capacity planning.",
-        "Outline operational KPIs and service-level targets.",
-        "Describe risk controls, compliance, and quality management.",
+        "Define the operational footprint and service coverage zones.",
+        "Clarify inventory sourcing, refurbishment, and delivery workflows.",
+        "Align staffing, service, and compliance processes to growth targets.",
       ]}
       focusAreas={[
         {
-          label: "Operating Footprint",
+          label: "Footprint Strategy",
           detail:
-            "Locations, infrastructure, equipment, and staffing model required to scale.",
+            "Regional hub strategy for sales, leasing, and service coverage.",
         },
         {
-          label: "Execution Cadence",
+          label: "Supply & Inventory",
           detail:
-            "Operating rhythm, reporting cadence, and continuous improvement loops.",
+            "Partnership pipeline for fleet acquisition and refurbishment.",
         },
         {
-          label: "Risk & Compliance",
+          label: "Service Readiness",
           detail:
-            "Safety standards, regulatory posture, and business continuity planning.",
+            "Maintenance cadence, warranty coverage, and uptime guarantees.",
         },
       ]}
       notes={[
-        "Align capacity assumptions with projection volumes.",
-        "Add operational milestones tied to capital allocation.",
-        "Include logistics diagrams once assets are cataloged.",
+        "Map operational KPIs to the projections dashboard once data ingestion is complete.",
+        "Document compliance and safety certifications in the appendix.",
+        "Add SOP links and staffing plans as they are finalized.",
       ]}
-    />
+    >
+      <OperationalFocusCards
+        items={[
+          {
+            label: "Regional Coverage",
+            detail: "Launch with primary hubs, expand to satellite service points.",
+          },
+          {
+            label: "Fleet Utilization",
+            detail: "Target utilization benchmarks by asset class and contract type.",
+          },
+          {
+            label: "Service SLAs",
+            detail: "Define response times and preventive maintenance cadence.",
+          },
+        ]}
+      />
+      <ExecutionTimeline
+        items={[
+          {
+            quarter: "Q1",
+            title: "Inventory Intake",
+            detail:
+              "Finalize supplier agreements and onboard initial inventory pipeline.",
+          },
+          {
+            quarter: "Q2",
+            title: "Leasing Ramp",
+            detail:
+              "Scale leasing operations, onboard fleet financing partners.",
+          },
+          {
+            quarter: "Q3",
+            title: "Service Expansion",
+            detail:
+              "Deploy regional service teams and establish maintenance SLAs.",
+          },
+          {
+            quarter: "Q4",
+            title: "Optimization",
+            detail:
+              "Refine utilization, pricing, and renewal workflows based on KPI data.",
+          },
+        ]}
+      />
+    </SectionLayout>
   );
 }
