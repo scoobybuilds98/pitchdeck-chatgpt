@@ -1,5 +1,9 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import SourceList from "../../../../components/narrative/SourceList";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
 
 export default async function AppendixPage({
   params,
@@ -38,8 +42,7 @@ export default async function AppendixPage({
         },
         {
           label: "Version Control",
-          detail:
-            "Document version history and responsible contributors.",
+          detail: "Document version history and responsible contributors.",
         },
       ]}
       notes={[
@@ -47,6 +50,25 @@ export default async function AppendixPage({
         "Attach downloadable tables once data exports are available.",
         "Maintain a revision log for investor-facing updates.",
       ]}
-    />
+    >
+      <SourceList
+        items={[
+          {
+            label: "Company Source Docs",
+            detail:
+              "Mainland Truck & Trailer Sales & Leasing pitch deck source files",
+          },
+          {
+            label: "Market Research",
+            detail: "Industry market sizing reports and public datasets",
+          },
+          {
+            label: "Operating Assumptions",
+            detail:
+              "Internal assumptions register aligned to projections (v1.0)",
+          },
+        ]}
+      />
+    </SectionLayout>
   );
 }

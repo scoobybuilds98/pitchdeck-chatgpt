@@ -183,6 +183,39 @@ main {
   margin: 0 0 8px;
 }
 
+.source-card {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.source-list {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.source-list li {
+  display: grid;
+  gap: 4px;
+}
+
+.source-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.source-detail {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.source-detail a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
+
 .kpi {
   padding: 18px;
   border-radius: var(--radius-md);
