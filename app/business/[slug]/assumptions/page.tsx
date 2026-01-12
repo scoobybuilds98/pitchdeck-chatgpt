@@ -1,7 +1,15 @@
-import SectionLayout from "../../../../components/layout/SectionLayout";
+import AssumptionSummaryCards from "../../../../components/assumptions/AssumptionSummaryCards";
 import AssumptionTable from "../../../../components/assumptions/AssumptionTable";
-import { loadAssumptionData } from "../../../../lib/assumptionsData";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import EmptyState from "../../../../components/layout/EmptyState";
+import SectionLayout from "../../../../components/layout/SectionLayout";
+import {
+  getAssumptionSummary,
+  loadAssumptionData,
+} from "../../../../lib/assumptionsData";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
 
 export default async function AssumptionsPage({
   params,
@@ -16,6 +24,27 @@ export default async function AssumptionsPage({
   const fallbackLead =
     "This section documents the foundational assumptions behind the projections, including pricing, volume, utilization, and cost drivers. It also captures risk factors and mitigation plans.";
   const assumptionData = await loadAssumptionData(params.slug);
+  const summary = getAssumptionSummary(assumptionData);
+
+  const summaryCards = [
+    {
+      label: "Assumption Count",
+      value: `${summary.totalAssumptions}`,
+      detail: "Total projection assumptions tracked",
+    },
+    {
+      label: "Risk Register",
+      value: `${summary.riskCount}`,
+      detail: "Active risks with mitigations",
+    },
+    {
+      label: "Notes Coverage",
+      value: `${summary.noteCoverage}%`,
+      detail: `${summary.assumptionsWithNotes} assumptions have notes`,
+    },
+  ];
+
+  const hasAssumptions = assumptionData.assumptions.length > 0;
 
   return (
     <SectionLayout
@@ -51,7 +80,15 @@ export default async function AssumptionsPage({
         "Record owner and review cadence for each assumption.",
       ]}
     >
-      <AssumptionTable items={assumptionData.assumptions} />
+      <AssumptionSummaryCards items={summaryCards} />
+      {hasAssumptions ? (
+        <AssumptionTable items={assumptionData.assumptions} />
+      ) : (
+        <EmptyState
+          title="Assumptions data pending"
+          description="Add assumptions to data/businesses/mainland-truck/assumptions.json to populate the register and unlock scenario editing."
+        />
+      )}
     </SectionLayout>
   );
 }
