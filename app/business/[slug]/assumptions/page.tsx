@@ -1,11 +1,25 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
-export default function AssumptionsPage() {
+export default async function AssumptionsPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const metadata = await loadBusinessMetadata(params.slug);
+  const sectionLabel =
+    metadata.sections.find((section) => section.slug === "assumptions")?.label ??
+    "Assumptions & Notes";
+  const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
+  const fallbackLead =
+    "This section documents the foundational assumptions behind the projections, including pricing, volume, utilization, and cost drivers. It also captures risk factors and mitigation plans.";
+
   return (
     <SectionLayout
       title="Assumptions & Notes"
       subtitle="Key assumptions, risks, and supporting rationale."
-      lead="This section documents the foundational assumptions behind the projections, including pricing, volume, utilization, and cost drivers. It also captures risk factors and mitigation plans."
+      lead={narrative[0] ?? fallbackLead}
+      narrativeParagraphs={narrative.slice(1)}
       highlights={[
         "List core assumptions with source references.",
         "Surface major risks and mitigation strategies.",

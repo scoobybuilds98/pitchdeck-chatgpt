@@ -1,11 +1,25 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
-export default function OperationsPage() {
+export default async function OperationsPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const metadata = await loadBusinessMetadata(params.slug);
+  const sectionLabel =
+    metadata.sections.find((section) => section.slug === "operations")?.label ??
+    "Operations";
+  const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
+  const fallbackLead =
+    "This section describes how the business executes day-to-day operations, scales capacity, and delivers consistent service quality. It emphasizes process discipline, supply chain, and operational KPIs.";
+
   return (
     <SectionLayout
       title="Operations"
       subtitle="Execution plan, footprint, and delivery capabilities."
-      lead="This section describes how the business executes day-to-day operations, scales capacity, and delivers consistent service quality. It emphasizes process discipline, supply chain, and operational KPIs."
+      lead={narrative[0] ?? fallbackLead}
+      narrativeParagraphs={narrative.slice(1)}
       highlights={[
         "Document operational footprint and capacity planning.",
         "Outline operational KPIs and service-level targets.",

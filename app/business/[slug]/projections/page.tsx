@@ -1,11 +1,25 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
-export default function ProjectionsPage() {
+export default async function ProjectionsPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const metadata = await loadBusinessMetadata(params.slug);
+  const sectionLabel =
+    metadata.sections.find((section) => section.slug === "projections")?.label ??
+    "Financial Projections";
+  const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
+  const fallbackLead =
+    "This section will host the interactive projections engine. Users will adjust assumptions, view scenario changes, and analyze the resulting impact on revenue, margins, and cash flow.";
+
   return (
     <SectionLayout
       title="Financial Projections"
       subtitle="Editable assumptions and forward-looking financial performance."
-      lead="This section will host the interactive projections engine. Users will adjust assumptions, view scenario changes, and analyze the resulting impact on revenue, margins, and cash flow."
+      lead={narrative[0] ?? fallbackLead}
+      narrativeParagraphs={narrative.slice(1)}
       highlights={[
         "Expose editable assumptions with validation and audit trails.",
         "Display scenario-based outputs with live chart updates.",

@@ -5,6 +5,7 @@ interface SectionLayoutProps {
   highlights: string[];
   focusAreas: Array<{ label: string; detail: string }>;
   notes: string[];
+  narrativeParagraphs?: string[];
 }
 
 // Shared narrative layout for all deck sections.
@@ -15,6 +16,7 @@ export default function SectionLayout({
   highlights,
   focusAreas,
   notes,
+  narrativeParagraphs = [],
 }: SectionLayoutProps) {
   return (
     <main className="page-shell">
@@ -29,6 +31,15 @@ export default function SectionLayout({
         <p className="section-subtitle" style={{ marginBottom: "16px" }}>
           {lead}
         </p>
+        {narrativeParagraphs.map((paragraph) => (
+          <p
+            key={paragraph}
+            className="section-subtitle"
+            style={{ marginBottom: "12px" }}
+          >
+            {paragraph}
+          </p>
+        ))}
         <ul className="list">
           {highlights.map((item) => (
             <li key={item}>{item}</li>

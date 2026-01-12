@@ -1,11 +1,25 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
-export default function ModelPage() {
+export default async function ModelPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const metadata = await loadBusinessMetadata(params.slug);
+  const sectionLabel =
+    metadata.sections.find((section) => section.slug === "model")?.label ??
+    "Business Model";
+  const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
+  const fallbackLead =
+    "This section details how the business generates revenue, the primary cost drivers, and the mechanics behind profitability. It will include pricing levers, unit economics, and margin profile assumptions.";
+
   return (
     <SectionLayout
       title="Business Model"
       subtitle="Explaining revenue streams, unit economics, and pricing strategy."
-      lead="This section details how the business generates revenue, the primary cost drivers, and the mechanics behind profitability. It will include pricing levers, unit economics, and margin profile assumptions."
+      lead={narrative[0] ?? fallbackLead}
+      narrativeParagraphs={narrative.slice(1)}
       highlights={[
         "Break down revenue streams and recurring vs. non-recurring mix.",
         "Describe pricing strategy and key value propositions.",

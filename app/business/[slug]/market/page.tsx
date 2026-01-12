@@ -1,11 +1,25 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
-export default function MarketPage() {
+export default async function MarketPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const metadata = await loadBusinessMetadata(params.slug);
+  const sectionLabel =
+    metadata.sections.find((section) => section.slug === "market")?.label ??
+    "Market & Opportunity";
+  const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
+  const fallbackLead =
+    "This section establishes the total addressable market, growth catalysts, and customer dynamics that support the business plan. It will include macro trends and localized insights specific to each business.";
+
   return (
     <SectionLayout
       title="Market & Opportunity"
       subtitle="Sizing the market, customer segments, and demand drivers."
-      lead="This section establishes the total addressable market, growth catalysts, and customer dynamics that support the business plan. It will include macro trends and localized insights specific to each business."
+      lead={narrative[0] ?? fallbackLead}
+      narrativeParagraphs={narrative.slice(1)}
       highlights={[
         "Quantify TAM, SAM, and SOM with defensible sources.",
         "Describe core customer personas and buying behavior.",

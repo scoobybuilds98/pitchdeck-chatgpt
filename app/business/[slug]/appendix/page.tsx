@@ -1,11 +1,25 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
-export default function AppendixPage() {
+export default async function AppendixPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const metadata = await loadBusinessMetadata(params.slug);
+  const sectionLabel =
+    metadata.sections.find((section) => section.slug === "appendix")?.label ??
+    "Appendix";
+  const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
+  const fallbackLead =
+    "This section consolidates all source material, citations, and supplemental data. It serves as the evidence base behind market sizing, assumptions, and financial projections.";
+
   return (
     <SectionLayout
       title="Appendix"
       subtitle="Sources, citations, and supporting materials."
-      lead="This section consolidates all source material, citations, and supplemental data. It serves as the evidence base behind market sizing, assumptions, and financial projections."
+      lead={narrative[0] ?? fallbackLead}
+      narrativeParagraphs={narrative.slice(1)}
       highlights={[
         "List all external sources and citations.",
         "Include supplementary tables and data extracts.",

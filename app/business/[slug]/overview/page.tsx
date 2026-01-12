@@ -1,11 +1,25 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 
-export default function OverviewPage() {
+export default async function OverviewPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const metadata = await loadBusinessMetadata(params.slug);
+  const sectionLabel =
+    metadata.sections.find((section) => section.slug === "overview")?.label ??
+    "Executive Summary";
+  const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
+  const fallbackLead =
+    "This section frames the business narrative, the problem it solves, and how the team will deliver durable returns. It aligns the value proposition, competitive advantage, and capital needs in a cohesive narrative.";
+
   return (
     <SectionLayout
       title="Executive Summary"
       subtitle="Positioning the business, investment thesis, and growth story."
-      lead="This section frames the business narrative, the problem it solves, and how the team will deliver durable returns. It aligns the value proposition, competitive advantage, and capital needs in a cohesive narrative."
+      lead={narrative[0] ?? fallbackLead}
+      narrativeParagraphs={narrative.slice(1)}
       highlights={[
         "Define the mission, vision, and customer pain points with clarity.",
         "Summarize near-term objectives and the strategic roadmap.",
