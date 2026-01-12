@@ -6,6 +6,7 @@ interface SectionLayoutProps {
   focusAreas: Array<{ label: string; detail: string }>;
   notes: string[];
   narrativeParagraphs?: string[];
+  children?: React.ReactNode;
 }
 
 // Shared narrative layout for all deck sections.
@@ -17,6 +18,7 @@ export default function SectionLayout({
   focusAreas,
   notes,
   narrativeParagraphs = [],
+  children,
 }: SectionLayoutProps) {
   return (
     <main className="page-shell">
@@ -55,6 +57,8 @@ export default function SectionLayout({
           </article>
         ))}
       </section>
+
+      {children ? <section style={{ marginTop: "24px" }}>{children}</section> : null}
 
       <section className="card" style={{ marginTop: "24px", padding: "24px" }}>
         <h2 className="section-title">Notes & Considerations</h2>
