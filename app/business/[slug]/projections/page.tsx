@@ -1,7 +1,9 @@
 import SectionLayout from "../../../../components/layout/SectionLayout";
 import ProjectionTable from "../../../../components/projections/ProjectionTable";
+import ProjectionTables from "../../../../components/projections/ProjectionTables";
 import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
 import { buildProjectionYears, loadProjectionData } from "../../../../lib/projectionsData";
+import { loadTablesData } from "../../../../lib/tablesData";
 
 export default async function ProjectionsPage({
   params,
@@ -17,6 +19,7 @@ export default async function ProjectionsPage({
     "This section will host the interactive projections engine. Users will adjust assumptions, view scenario changes, and analyze the resulting impact on revenue, margins, and cash flow.";
   const projectionData = await loadProjectionData(params.slug);
   const years = buildProjectionYears(projectionData);
+  const tablesData = await loadTablesData(params.slug);
 
   return (
     <SectionLayout
@@ -53,6 +56,11 @@ export default async function ProjectionsPage({
       ]}
     >
       <ProjectionTable metrics={projectionData.metrics} years={years} />
+      <ProjectionTables
+        tables={tablesData.tables}
+        metrics={projectionData.metrics}
+        years={years}
+      />
     </SectionLayout>
   );
 }
