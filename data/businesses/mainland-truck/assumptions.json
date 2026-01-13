@@ -1,0 +1,27 @@
+{
+  "assumptions": [
+    {
+      "id": "fleet-volume-growth",
+      "category": "Volume",
+      "label": "Annual fleet volume growth",
+      "value": 0,
+      "unit": "%",
+      "notes": "Populate with values from projection source documents."
+    }
+  ],
+  "risks": [
+    {
+      "id": "supply-chain",
+      "label": "Equipment supply chain disruptions",
+      "mitigation": "Diversify suppliers and maintain inventory buffers."
+    }
+  ],
+  "auditTrail": [
+    {
+      "date": "2025-01-01",
+      "author": "Lead Engineer",
+      "change": "Initialized assumptions baseline.",
+      "rationale": "Prepare for ingestion of projection data."
+    }
+  ]
+}
