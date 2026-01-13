@@ -1,5 +1,10 @@
+import MarketSignalCards from "../../../../components/market/MarketSignalCards";
+import SegmentHighlights from "../../../../components/market/SegmentHighlights";
 import SectionLayout from "../../../../components/layout/SectionLayout";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
 
 export default async function MarketPage({
   params,
@@ -12,41 +17,83 @@ export default async function MarketPage({
     "Market & Opportunity";
   const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
   const fallbackLead =
-    "This section establishes the total addressable market, growth catalysts, and customer dynamics that support the business plan. It will include macro trends and localized insights specific to each business.";
+    "This section defines the market size, growth drivers, and competitive dynamics for Mainland Truck & Trailer Sales & Leasing, clarifying where the business has structural advantage.";
 
   return (
     <SectionLayout
       title="Market & Opportunity"
-      subtitle="Sizing the market, customer segments, and demand drivers."
+      subtitle="Market sizing, demand drivers, and growth headroom."
       lead={narrative[0] ?? fallbackLead}
       narrativeParagraphs={narrative.slice(1)}
       highlights={[
-        "Quantify TAM, SAM, and SOM with defensible sources.",
-        "Describe core customer personas and buying behavior.",
-        "Map key tailwinds and structural trends supporting growth.",
+        "Quantify the addressable market across sales, leasing, and service.",
+        "Identify demand drivers tied to freight cycles and fleet replacement.",
+        "Benchmark competitive positioning by region and service breadth.",
       ]}
       focusAreas={[
         {
-          label: "Market Size",
+          label: "Total Addressable Market",
           detail:
-            "Detailed sizing model with assumptions, timelines, and market share targets.",
+            "Aggregate spending on commercial trucks, trailers, leasing, and service.",
         },
         {
           label: "Demand Drivers",
           detail:
-            "Regulatory, economic, and industry-specific factors expanding demand.",
+            "Replacement cycles, fleet aging, and regulatory compliance needs.",
         },
         {
-          label: "Competitive Landscape",
+          label: "Competitive Map",
           detail:
-            "Clear comparison of incumbents, substitutes, and whitespace opportunities.",
+            "Regional competitors, pricing benchmarks, and service differentiation.",
         },
       ]}
       notes={[
-        "Add cited sources for market sizing in the appendix.",
-        "Include a market growth chart once projections data is ingested.",
-        "Tie customer demand assumptions directly to revenue drivers.",
+        "Replace placeholder signals with data from market research sources.",
+        "Add citations to the appendix once ingestion is complete.",
+        "Tie market assumptions to the projections model inputs.",
       ]}
-    />
+    >
+      <MarketSignalCards
+        items={[
+          {
+            label: "TAM",
+            value: "$XXB",
+            detail: "Total addressable spend across sales + leasing + service",
+          },
+          {
+            label: "Growth",
+            value: "X% CAGR",
+            detail: "Projected multi-year industry growth rate",
+          },
+          {
+            label: "Service Gap",
+            value: "High",
+            detail: "Service capacity shortfall in target regions",
+          },
+        ]}
+      />
+      <SegmentHighlights
+        segments={[
+          {
+            name: "Owner-Operators",
+            detail:
+              "Independent operators seeking flexible financing and service bundles.",
+            opportunity: "High volume, high churn, leasing upsell potential.",
+          },
+          {
+            name: "Regional Fleets",
+            detail:
+              "Mid-size fleets with replacement cycles tied to utilization.",
+            opportunity: "Predictable renewal pipeline with service attach.",
+          },
+          {
+            name: "Logistics Partners",
+            detail:
+              "Enterprise partners with bulk purchasing and service requirements.",
+            opportunity: "Strategic contracts and high-ticket deal flow.",
+          },
+        ]}
+      />
+    </SectionLayout>
   );
 }

@@ -294,6 +294,34 @@ main {
   color: var(--text-secondary);
 }
 
+.segment-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.segment-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.segment-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.segment-detail {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.segment-opportunity {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .list {
   margin: 0;
   padding-left: 20px;
