@@ -1,5 +1,10 @@
+import GoToMarketSteps from "../../../../components/model/GoToMarketSteps";
+import RevenueStreams from "../../../../components/model/RevenueStreams";
 import SectionLayout from "../../../../components/layout/SectionLayout";
-import { loadBusinessMetadata, loadNarrativeBySection } from "../../../../lib/businessData";
+import {
+  loadBusinessMetadata,
+  loadNarrativeBySection,
+} from "../../../../lib/businessData";
 
 export default async function ModelPage({
   params,
@@ -12,41 +17,83 @@ export default async function ModelPage({
     "Business Model";
   const narrative = await loadNarrativeBySection(params.slug, sectionLabel);
   const fallbackLead =
-    "This section details how the business generates revenue, the primary cost drivers, and the mechanics behind profitability. It will include pricing levers, unit economics, and margin profile assumptions.";
+    "This section outlines the revenue model, unit economics, and growth levers for Mainland Truck & Trailer Sales & Leasing.";
 
   return (
     <SectionLayout
       title="Business Model"
-      subtitle="Explaining revenue streams, unit economics, and pricing strategy."
+      subtitle="Revenue streams, unit economics, and go-to-market plan."
       lead={narrative[0] ?? fallbackLead}
       narrativeParagraphs={narrative.slice(1)}
       highlights={[
-        "Break down revenue streams and recurring vs. non-recurring mix.",
-        "Describe pricing strategy and key value propositions.",
-        "Outline unit economics and contribution margin drivers.",
+        "Describe primary revenue engines and margin profiles.",
+        "Clarify pricing strategy, asset utilization, and financing structure.",
+        "Map growth levers to the projections and operational plan.",
       ]}
       focusAreas={[
         {
           label: "Revenue Architecture",
           detail:
-            "Detailed decomposition of revenue streams, rate cards, and service tiers.",
+            "Sales, leasing, service, and ancillary revenue tied to fleet lifecycle.",
         },
         {
           label: "Unit Economics",
           detail:
-            "Per-unit profitability, customer lifetime value, and payback periods.",
+            "Contribution margin, utilization, and payback period targets.",
         },
         {
-          label: "Cost Structure",
+          label: "Growth Engine",
           detail:
-            "Fixed vs. variable cost base, with operational leverage assumptions.",
+            "Channels, partnerships, and recurring revenue expansion.",
         },
       ]}
       notes={[
-        "Add supporting charts for margin expansion over time.",
-        "Clarify pricing sensitivity assumptions in the projections data.",
-        "Link to operational efficiency initiatives in the operations section.",
+        "Update pricing and margin targets once projections are finalized.",
+        "Add KPIs for conversion, utilization, and renewal rates.",
+        "Tie go-to-market milestones to the operations timeline.",
       ]}
-    />
+    >
+      <RevenueStreams
+        streams={[
+          {
+            name: "Truck & Trailer Sales",
+            description:
+              "New and used inventory sales across core commercial segments.",
+            driver: "Volume growth and inventory turn rates.",
+          },
+          {
+            name: "Leasing & Rentals",
+            description:
+              "Recurring lease contracts and short-term rental utilization.",
+            driver: "Utilization rates and contract mix.",
+          },
+          {
+            name: "Service & Parts",
+            description:
+              "Maintenance, repair, and aftermarket parts revenue.",
+            driver: "Service attach rate and response time SLAs.",
+          },
+        ]}
+      />
+      <GoToMarketSteps
+        steps={[
+          {
+            title: "Channel Expansion",
+            detail:
+              "Strengthen dealer partnerships and fleet procurement channels.",
+          },
+          {
+            title: "Service Differentiation",
+            detail:
+              "Bundle maintenance SLAs with leasing and rental offers.",
+          },
+          {
+            title: "Enterprise Contracts",
+            detail:
+              "Secure multi-year fleet agreements with logistics partners.",
+          },
+        ]}
+      />
+    </SectionLayout>
   );
 }
