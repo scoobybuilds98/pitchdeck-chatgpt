@@ -380,6 +380,71 @@ main {
   color: var(--text-secondary);
 }
 
+.leader-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.leader-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.leader-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.leader-role {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.leader-detail {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.milestone-item {
+  display: grid;
+  gap: 8px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+
+.milestone-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.milestone-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.milestone-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.milestone-timing {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.milestone-detail {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
 .list {
   margin: 0;
   padding-left: 20px;
