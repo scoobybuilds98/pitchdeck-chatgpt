@@ -1,3 +1,4 @@
+import CompetitivePositioning from "../../../../components/market/CompetitivePositioning";
 import MarketSignalCards from "../../../../components/market/MarketSignalCards";
 import SegmentHighlights from "../../../../components/market/SegmentHighlights";
 import SectionLayout from "../../../../components/layout/SectionLayout";
@@ -91,6 +92,26 @@ export default async function MarketPage({
             detail:
               "Enterprise partners with bulk purchasing and service requirements.",
             opportunity: "Strategic contracts and high-ticket deal flow.",
+          },
+        ]}
+      />
+      <CompetitivePositioning
+        competitors={[
+          {
+            name: "Regional Dealer Networks",
+            advantage:
+              "Established footprint with localized inventory sourcing partnerships.",
+            gap: "Limited leasing flexibility and slower service turnaround.",
+          },
+          {
+            name: "National Leasing Providers",
+            advantage: "Scale financing capacity and national fleet coverage.",
+            gap: "Less localized service and slower customization cycles.",
+          },
+          {
+            name: "Independent Service Shops",
+            advantage: "Specialized maintenance expertise in key corridors.",
+            gap: "No bundled sales or leasing offerings.",
           },
         ]}
       />

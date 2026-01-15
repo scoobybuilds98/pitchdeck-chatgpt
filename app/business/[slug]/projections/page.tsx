@@ -1,8 +1,10 @@
 import MetricHighlights from "../../../../components/narrative/MetricHighlights";
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import ProjectionInsights from "../../../../components/projections/ProjectionInsights";
 import ProjectionSummaryCards from "../../../../components/projections/ProjectionSummaryCards";
 import ProjectionTable from "../../../../components/projections/ProjectionTable";
 import ProjectionTables from "../../../../components/projections/ProjectionTables";
+import ScenarioSelector from "../../../../components/projections/ScenarioSelector";
 import {
   loadBusinessMetadata,
   loadNarrativeBySection,
@@ -88,6 +90,26 @@ export default async function ProjectionsPage({
       ]}
     >
       <ProjectionSummaryCards items={summaryCards} />
+      <ScenarioSelector scenarios={projectionData.scenarios} />
+      <ProjectionInsights
+        items={[
+          {
+            title: "Base Case Ramp",
+            detail:
+              "Revenue scales with inventory intake and leasing utilization targets.",
+          },
+          {
+            title: "Margin Expansion",
+            detail:
+              "Service attach and parts revenue lift blended margins over time.",
+          },
+          {
+            title: "Capital Efficiency",
+            detail:
+              "Leasing leverage improves cash conversion as utilization stabilizes.",
+          },
+        ]}
+      />
       {metricHighlights.length ? (
         <MetricHighlights items={metricHighlights} />
       ) : null}

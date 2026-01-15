@@ -1,6 +1,7 @@
 import GoToMarketSteps from "../../../../components/model/GoToMarketSteps";
 import RevenueStreams from "../../../../components/model/RevenueStreams";
 import SectionLayout from "../../../../components/layout/SectionLayout";
+import UnitEconomicsHighlights from "../../../../components/model/UnitEconomicsHighlights";
 import {
   loadBusinessMetadata,
   loadNarrativeBySection,
@@ -53,6 +54,25 @@ export default async function ModelPage({
         "Tie go-to-market milestones to the operations timeline.",
       ]}
     >
+      <UnitEconomicsHighlights
+        items={[
+          {
+            label: "Contribution Margin",
+            value: "XX%",
+            detail: "Target blended margin across sales + leasing + service",
+          },
+          {
+            label: "Payback",
+            value: "X Months",
+            detail: "Payback period on leased asset investments",
+          },
+          {
+            label: "Utilization",
+            value: "XX%",
+            detail: "Target utilization across rental and lease fleet",
+          },
+        ]}
+      />
       <RevenueStreams
         streams={[
           {

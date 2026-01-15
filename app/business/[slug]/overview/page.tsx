@@ -1,5 +1,7 @@
-import SectionLayout from "../../../../components/layout/SectionLayout";
 import BusinessSnapshot from "../../../../components/narrative/BusinessSnapshot";
+import LeadershipHighlights from "../../../../components/overview/LeadershipHighlights";
+import SectionLayout from "../../../../components/layout/SectionLayout";
+import TractionMilestones from "../../../../components/overview/TractionMilestones";
 import {
   loadBusinessMetadata,
   loadNarrativeBySection,
@@ -58,6 +60,50 @@ export default async function OverviewPage({
           { label: "Operating Base", value: metadata.location },
           { label: "Stage", value: metadata.stage },
           { label: "Last Updated", value: metadata.lastUpdated },
+        ]}
+      />
+      <LeadershipHighlights
+        leaders={[
+          {
+            name: "Executive Sponsor",
+            role: "Founder & CEO",
+            detail:
+              "Leads commercial strategy, supplier partnerships, and capital planning.",
+          },
+          {
+            name: "Operations Lead",
+            role: "VP Operations",
+            detail:
+              "Owns fleet readiness, service SLAs, and inventory throughput.",
+          },
+          {
+            name: "Finance Lead",
+            role: "VP Finance",
+            detail:
+              "Manages leasing capital structure and investor reporting cadence.",
+          },
+        ]}
+      />
+      <TractionMilestones
+        items={[
+          {
+            title: "Inventory Pipeline Secured",
+            detail:
+              "Initial fleet sourcing partnerships established for launch inventory.",
+            timing: "Near Term",
+          },
+          {
+            title: "Leasing Demand Validation",
+            detail:
+              "Early demand signals from regional fleet operators and owner-operators.",
+            timing: "Next 6 Months",
+          },
+          {
+            title: "Service Expansion Plan",
+            detail:
+              "Service network blueprint aligned with hub rollout strategy.",
+            timing: "Next 12 Months",
+          },
         ]}
       />
     </SectionLayout>
