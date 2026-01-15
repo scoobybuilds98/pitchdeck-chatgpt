@@ -166,6 +166,7 @@ Path: `data/businesses/mainland-truck/`
 - `docs/DECISIONS.md` — architecture decisions
 - `docs/CHANGELOG.md` — change history
 - `docs/STATUS.md` — current status summary
+- `docs/FINAL_READINESS.md` — final checklist before investor demo
 - **This file:** `docs/SOURCE_OF_TRUTH.md` (authoritative reference)
 
 ---
