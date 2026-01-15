@@ -1,25 +1,25 @@
 {
   "charts": [
     {
-      "id": "revenue-trend",
-      "title": "Revenue Trend",
+      "id": "total-revenue-trend",
+      "title": "Total Revenue (Low vs High)",
       "type": "line",
-      "metrics": ["revenue"],
-      "notes": "Tracks total revenue growth across the projection horizon as inventory intake and leasing utilization scale. Use this to validate top-line ramp assumptions and compare against scenario targets."
+      "metrics": ["totalRevenueLow", "totalRevenueHigh"],
+      "notes": "Tracks total revenue growth under the low and high projection cases from 2025-2028."
     },
     {
-      "id": "gross-margin",
-      "title": "Gross Margin Profile",
+      "id": "rental-revenue-trend",
+      "title": "Rental Revenue (Low vs High)",
       "type": "line",
-      "metrics": ["grossMargin"],
-      "notes": "Shows gross margin expansion as service attach rate increases and parts revenue grows. This line should trend upward as higher-margin services scale."
+      "metrics": ["rentalRevenueLow", "rentalRevenueHigh"],
+      "notes": "Highlights the rental revenue ramp tied to fleet utilization and average monthly rates."
     },
     {
       "id": "unit-volume",
-      "title": "Unit Volume",
+      "title": "Unit Volume (Low vs High)",
       "type": "bar",
-      "metrics": ["unitVolume"],
-      "notes": "Visualizes total unit volume by year to confirm fleet intake assumptions and validate that volume growth matches revenue expansion."
+      "metrics": ["unitVolumeLow", "unitVolumeHigh"],
+      "notes": "Visualizes fleet unit growth for the low and high scenarios over the projection horizon."
     }
   ]
 }
