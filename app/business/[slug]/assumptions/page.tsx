@@ -75,8 +75,7 @@ export default async function AssumptionsPage({
         },
         {
           label: "Audit Trail",
-          detail:
-            "Track assumption changes, timestamps, and reasoning.",
+          detail: "Track assumption changes, timestamps, and reasoning.",
         },
       ]}
       notes={[
@@ -88,7 +87,10 @@ export default async function AssumptionsPage({
       <AssumptionSummaryCards items={summaryCards} />
       {hasAssumptions ? (
         <>
-          <AssumptionEditor items={assumptionData.assumptions} />
+          <AssumptionEditor
+            items={assumptionData.assumptions}
+            storageKey={`assumptions:${params.slug}`}
+          />
           <AssumptionTable items={assumptionData.assumptions} />
         </>
       ) : (

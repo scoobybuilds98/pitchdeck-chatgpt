@@ -2,9 +2,7 @@ import MetricHighlights from "../../../../components/narrative/MetricHighlights"
 import SectionLayout from "../../../../components/layout/SectionLayout";
 import ProjectionInsights from "../../../../components/projections/ProjectionInsights";
 import ProjectionSummaryCards from "../../../../components/projections/ProjectionSummaryCards";
-import ProjectionTable from "../../../../components/projections/ProjectionTable";
-import ProjectionTables from "../../../../components/projections/ProjectionTables";
-import ScenarioSelector from "../../../../components/projections/ScenarioSelector";
+import InteractiveProjectionDashboard from "../../../../components/projections/InteractiveProjectionDashboard";
 import {
   loadBusinessMetadata,
   loadNarrativeBySection,
@@ -15,6 +13,7 @@ import {
   loadProjectionData,
 } from "../../../../lib/projectionsData";
 import { loadTablesData } from "../../../../lib/tablesData";
+import { loadAssumptionData } from "../../../../lib/assumptionsData";
 
 export default async function ProjectionsPage({
   params,
@@ -29,6 +28,7 @@ export default async function ProjectionsPage({
   const fallbackLead =
     "This section will host the interactive projections engine. Users will adjust assumptions, view scenario changes, and analyze the resulting impact on revenue, margins, and cash flow.";
   const projectionData = await loadProjectionData(params.slug);
+  const assumptionData = await loadAssumptionData(params.slug);
   const years = buildProjectionYears(projectionData);
   const tablesData = await loadTablesData(params.slug);
   const completeness = getProjectionCompleteness(projectionData, years);
@@ -90,39 +90,34 @@ export default async function ProjectionsPage({
       ]}
     >
       <ProjectionSummaryCards items={summaryCards} />
-      <ScenarioSelector scenarios={projectionData.scenarios} />
       <ProjectionInsights
         items={[
           {
-            title: "Base Case Ramp",
+            title: "Scenario-driven growth",
             detail:
-              "Revenue scales with inventory intake and leasing utilization targets.",
+              "Low and high cases highlight the impact of the fleet ramp plan across rental, chassis, and resale revenue.",
           },
           {
-            title: "Margin Expansion",
+            title: "Utilization sensitivity",
             detail:
-              "Service attach and parts revenue lift blended margins over time.",
+              "Adjust utilization to see how rental revenue and total revenue respond without changing asset sales assumptions.",
           },
           {
-            title: "Capital Efficiency",
+            title: "Revenue mix clarity",
             detail:
-              "Leasing leverage improves cash conversion as utilization stabilizes.",
+              "Rental, chassis sales, and used equipment sales are itemized to show how the mix shifts over time.",
           },
         ]}
       />
       {metricHighlights.length ? (
         <MetricHighlights items={metricHighlights} />
       ) : null}
-      <ProjectionTable
-        metrics={projectionData.metrics}
-        years={years}
-        currency={projectionData.currency}
-      />
-      <ProjectionTables
+      <InteractiveProjectionDashboard
+        slug={params.slug}
+        projectionData={projectionData}
+        assumptions={assumptionData.assumptions}
         tables={tablesData.tables}
-        metrics={projectionData.metrics}
         years={years}
-        currency={projectionData.currency}
       />
     </SectionLayout>
   );
