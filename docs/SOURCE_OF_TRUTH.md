@@ -53,7 +53,7 @@ Path: `data/businesses/mainland-truck/`
 - `narrative.md` — section narratives (placeholders).
 - `assumptions.json` — assumptions, risks, audit trail (placeholders).
 - `projections.json` — metrics, drivers, scenarios (placeholders).
-- `charts.json` — chart registry (placeholders).
+- `charts.json` — chart registry (includes chart explanations).
 - `tables.json` — projection table registry (placeholders).
 - `notes.md` — appendix and citation placeholders.
 
@@ -62,7 +62,7 @@ Path: `data/businesses/mainland-truck/`
 ## 4) Page Map (All Implemented)
 
 ### Business Routes
-- `app/business/[slug]/page.tsx` — business landing page
+- `app/business/[slug]/page.tsx` — business landing page + data readiness
 - `app/business/[slug]/overview/page.tsx` — Executive Summary
 - `app/business/[slug]/market/page.tsx` — Market & Opportunity
 - `app/business/[slug]/model/page.tsx` — Business Model
@@ -91,6 +91,7 @@ Path: `data/businesses/mainland-truck/`
 - `components/narrative/BusinessSnapshot.tsx`
 - `components/overview/LeadershipHighlights.tsx`
 - `components/overview/TractionMilestones.tsx`
+- `components/overview/DataReadinessCards.tsx`
 
 ### Market
 - `components/market/MarketSignalCards.tsx`
@@ -117,10 +118,12 @@ Path: `data/businesses/mainland-truck/`
 ### Charts
 - `components/charts/ChartsGrid.tsx`
 - `components/charts/ChartDefinitionsTable.tsx`
+- `components/charts/ChartPreview.tsx`
 
 ### Assumptions
 - `components/assumptions/AssumptionSummaryCards.tsx`
 - `components/assumptions/AssumptionTable.tsx`
+- `components/assumptions/AssumptionEditor.tsx`
 - `components/assumptions/RiskRegister.tsx`
 - `components/assumptions/AuditTrail.tsx`
 
@@ -155,6 +158,8 @@ Path: `data/businesses/mainland-truck/`
   - Timeline, segment, stream, GTM, leadership, milestone, risk, audit styles
   - Competitive positioning styles for market view
   - Scenario selector + projection insights styles
+  - Chart preview styling for charts view
+  - Assumption editor styles
 
 ---
 
@@ -167,6 +172,7 @@ Path: `data/businesses/mainland-truck/`
 - `docs/CHANGELOG.md` — change history
 - `docs/STATUS.md` — current status summary
 - `docs/FINAL_READINESS.md` — final checklist before investor demo
+- `docs/INGESTION_GUIDE.md` — step-by-step data ingestion workflow
 - **This file:** `docs/SOURCE_OF_TRUTH.md` (authoritative reference)
 
 ---

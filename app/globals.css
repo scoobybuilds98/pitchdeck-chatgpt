@@ -52,6 +52,33 @@ main {
   border: 1px solid var(--border);
 }
 
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button--ghost {
+  background: transparent;
+}
+
+.button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .section-title {
   font-size: 26px;
   font-weight: 600;
@@ -486,6 +513,14 @@ main {
   display: grid;
   gap: 8px;
   background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+}
+
+.scenario-card--active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(47, 111, 237, 0.12);
+  background: var(--accent-soft);
 }
 
 .scenario-label {
@@ -495,6 +530,19 @@ main {
 
 .scenario-detail {
   font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.chart-preview {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.chart-preview.empty {
+  font-size: 12px;
   color: var(--text-secondary);
 }
 
@@ -518,6 +566,40 @@ main {
 .insight-detail {
   font-size: 14px;
   color: var(--text-secondary);
+}
+
+.assumption-editor-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  align-items: center;
+}
+
+.assumption-editor-row:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.assumption-editor-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+}
+
+.assumption-editor-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.assumption-editor-input {
+  min-width: 140px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
 }
 
 .list {

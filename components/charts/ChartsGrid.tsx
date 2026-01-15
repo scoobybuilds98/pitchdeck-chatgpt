@@ -1,4 +1,6 @@
+import ChartPreview from "./ChartPreview";
 import type { ChartConfig } from "../../lib/chartsData";
+import type { ProjectionMetric } from "../../lib/types";
 
 const chartTypeLabels: Record<string, string> = {
   line: "Line Chart",
@@ -7,7 +9,20 @@ const chartTypeLabels: Record<string, string> = {
   pie: "Pie Chart",
 };
 
-export default function ChartsGrid({ charts }: { charts: ChartConfig[] }) {
+function getMetricsForChart(
+  chart: ChartConfig,
+  metrics: ProjectionMetric[]
+) {
+  return metrics.filter((metric) => chart.metrics.includes(metric.id));
+}
+
+export default function ChartsGrid({
+  charts,
+  metrics,
+}: {
+  charts: ChartConfig[];
+  metrics: ProjectionMetric[];
+}) {
   return (
     <section className="section-grid" style={{ marginTop: "24px" }}>
       {charts.map((chart) => (
@@ -15,6 +30,7 @@ export default function ChartsGrid({ charts }: { charts: ChartConfig[] }) {
           <span className="badge">{chartTypeLabels[chart.type] ?? "Chart"}</span>
           <h3 style={{ margin: "16px 0 8px" }}>{chart.title}</h3>
           <p className="section-subtitle">Metrics: {chart.metrics.join(", ")}</p>
+          <ChartPreview metrics={getMetricsForChart(chart, metrics)} />
           {chart.notes ? (
             <p className="section-subtitle" style={{ marginTop: "12px" }}>
               {chart.notes}

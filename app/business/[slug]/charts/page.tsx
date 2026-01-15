@@ -7,6 +7,7 @@ import {
   loadNarrativeBySection,
 } from "../../../../lib/businessData";
 import { loadChartsData } from "../../../../lib/chartsData";
+import { loadProjectionData } from "../../../../lib/projectionsData";
 
 export default async function ChartsPage({
   params,
@@ -21,6 +22,7 @@ export default async function ChartsPage({
   const fallbackLead =
     "This section consolidates all visualizations for quick investor review. It will feature trend charts, stacked breakdowns, and KPI dashboards derived from the projections dataset.";
   const chartsData = await loadChartsData(params.slug);
+  const projectionData = await loadProjectionData(params.slug);
   const hasCharts = chartsData.charts.length > 0;
 
   return (
@@ -58,7 +60,7 @@ export default async function ChartsPage({
     >
       {hasCharts ? (
         <>
-          <ChartsGrid charts={chartsData.charts} />
+          <ChartsGrid charts={chartsData.charts} metrics={projectionData.metrics} />
           <ChartDefinitionsTable charts={chartsData.charts} />
         </>
       ) : (

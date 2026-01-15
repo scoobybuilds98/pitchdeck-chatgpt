@@ -1,3 +1,4 @@
+import AssumptionEditor from "../../../../components/assumptions/AssumptionEditor";
 import AssumptionSummaryCards from "../../../../components/assumptions/AssumptionSummaryCards";
 import AssumptionTable from "../../../../components/assumptions/AssumptionTable";
 import AuditTrail from "../../../../components/assumptions/AuditTrail";
@@ -74,8 +75,7 @@ export default async function AssumptionsPage({
         },
         {
           label: "Audit Trail",
-          detail:
-            "Track assumption changes, timestamps, and reasoning.",
+          detail: "Track assumption changes, timestamps, and reasoning.",
         },
       ]}
       notes={[
@@ -86,7 +86,13 @@ export default async function AssumptionsPage({
     >
       <AssumptionSummaryCards items={summaryCards} />
       {hasAssumptions ? (
-        <AssumptionTable items={assumptionData.assumptions} />
+        <>
+          <AssumptionEditor
+            items={assumptionData.assumptions}
+            storageKey={`assumptions:${params.slug}`}
+          />
+          <AssumptionTable items={assumptionData.assumptions} />
+        </>
       ) : (
         <EmptyState
           title="Assumptions data pending"
