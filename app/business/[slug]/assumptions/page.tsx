@@ -1,3 +1,4 @@
+import AssumptionEditor from "../../../../components/assumptions/AssumptionEditor";
 import AssumptionSummaryCards from "../../../../components/assumptions/AssumptionSummaryCards";
 import AssumptionTable from "../../../../components/assumptions/AssumptionTable";
 import AuditTrail from "../../../../components/assumptions/AuditTrail";
@@ -86,7 +87,10 @@ export default async function AssumptionsPage({
     >
       <AssumptionSummaryCards items={summaryCards} />
       {hasAssumptions ? (
-        <AssumptionTable items={assumptionData.assumptions} />
+        <>
+          <AssumptionEditor items={assumptionData.assumptions} />
+          <AssumptionTable items={assumptionData.assumptions} />
+        </>
       ) : (
         <EmptyState
           title="Assumptions data pending"

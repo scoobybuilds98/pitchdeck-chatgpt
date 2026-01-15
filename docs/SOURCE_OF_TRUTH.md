@@ -123,6 +123,7 @@ Path: `data/businesses/mainland-truck/`
 ### Assumptions
 - `components/assumptions/AssumptionSummaryCards.tsx`
 - `components/assumptions/AssumptionTable.tsx`
+- `components/assumptions/AssumptionEditor.tsx`
 - `components/assumptions/RiskRegister.tsx`
 - `components/assumptions/AuditTrail.tsx`
 
@@ -158,6 +159,7 @@ Path: `data/businesses/mainland-truck/`
   - Competitive positioning styles for market view
   - Scenario selector + projection insights styles
   - Chart preview styling for charts view
+  - Assumption editor styles
 
 ---
 
