@@ -8,15 +8,16 @@
 - Narrative and visualization scaffolding (cards, grids, tables, empty states).
 - Mainland Truck starter data templates for projections, assumptions, charts, tables,
   and narrative placeholders.
+- Scenario planning and projection insight blocks to support investor storytelling.
 
 ## In Progress
 - Data ingestion from source documents into the Mainland Truck dataset.
-- Chart rendering and interactive projection editing.
+- Interactive projections (editable assumptions, recalculation, persistence).
+- Chart rendering wired to projection data.
 
-## Next Up
-- Extract projections, assumptions, and narrative content from source docs into
-  `data/businesses/mainland-truck/`.
-- Implement editable projection inputs with persistence and validation.
-- Replace placeholder market signals and business model items with real data.
-- Add chart rendering components wired to projection data.
-- Run full QA pass (build, lint, and manual UI review) before investor demo.
+## Next Up (Critical Path)
+1. Extract real projections, assumptions, and narratives from source docs.
+2. Populate the `mainland-truck` data files with real values and citations.
+3. Implement editable assumptions + recalculation logic.
+4. Wire charts to projection data and render visuals.
+5. Run build/lint and complete investor QA review.
