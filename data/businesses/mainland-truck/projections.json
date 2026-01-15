@@ -10,13 +10,25 @@
       "id": "revenue",
       "label": "Revenue",
       "format": "currency",
-      "values": []
+      "values": [2500000, 3200000, 4100000, 5300000, 6800000, 8500000]
     },
     {
       "id": "grossMargin",
       "label": "Gross Margin",
       "format": "percentage",
-      "values": []
+      "values": [0.28, 0.30, 0.32, 0.33, 0.35, 0.36]
+    },
+    {
+      "id": "netIncome",
+      "label": "Net Income",
+      "format": "currency",
+      "values": [180000, 280000, 420000, 580000, 780000, 1020000]
+    },
+    {
+      "id": "operatingExpenses",
+      "label": "Operating Expenses",
+      "format": "currency",
+      "values": [520000, 640000, 770000, 930000, 1100000, 1290000]
     }
   ],
   "drivers": [
@@ -24,7 +36,13 @@
       "id": "unitVolume",
       "label": "Unit Volume",
       "format": "number",
-      "values": []
+      "values": [125, 160, 205, 265, 340, 425]
+    },
+    {
+      "id": "avgTransactionValue",
+      "label": "Average Transaction Value",
+      "format": "currency",
+      "values": [20000, 20000, 20000, 20000, 20000, 20000]
     }
   ],
   "scenarios": [

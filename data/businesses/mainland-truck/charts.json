@@ -2,10 +2,31 @@
   "charts": [
     {
       "id": "revenue-trend",
-      "title": "Revenue Trend",
+      "title": "Revenue Growth Trend",
       "type": "line",
       "metrics": ["revenue"],
-      "notes": "Connects to projections metric ids."
+      "notes": "Year-over-year revenue growth from $2.5M to $8.5M"
+    },
+    {
+      "id": "profitability-metrics",
+      "title": "Profitability Metrics",
+      "type": "bar",
+      "metrics": ["revenue", "netIncome", "operatingExpenses"],
+      "notes": "Comparison of revenue, net income, and operating expenses"
+    },
+    {
+      "id": "margin-improvement",
+      "title": "Gross Margin Improvement",
+      "type": "line",
+      "metrics": ["grossMargin"],
+      "notes": "Gross margin expansion from 28% to 36%"
+    },
+    {
+      "id": "unit-volume-growth",
+      "title": "Unit Volume Growth",
+      "type": "bar",
+      "metrics": ["unitVolume"],
+      "notes": "Fleet unit volume scaling from 125 to 425 units"
     }
   ]
 }
