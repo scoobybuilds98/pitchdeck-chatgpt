@@ -62,7 +62,7 @@ Path: `data/businesses/mainland-truck/`
 ## 4) Page Map (All Implemented)
 
 ### Business Routes
-- `app/business/[slug]/page.tsx` — business landing page
+- `app/business/[slug]/page.tsx` — business landing page + data readiness
 - `app/business/[slug]/overview/page.tsx` — Executive Summary
 - `app/business/[slug]/market/page.tsx` — Market & Opportunity
 - `app/business/[slug]/model/page.tsx` — Business Model
@@ -91,6 +91,7 @@ Path: `data/businesses/mainland-truck/`
 - `components/narrative/BusinessSnapshot.tsx`
 - `components/overview/LeadershipHighlights.tsx`
 - `components/overview/TractionMilestones.tsx`
+- `components/overview/DataReadinessCards.tsx`
 
 ### Market
 - `components/market/MarketSignalCards.tsx`
