@@ -53,7 +53,7 @@ Path: `data/businesses/mainland-truck/`
 - `narrative.md` — section narratives (placeholders).
 - `assumptions.json` — assumptions, risks, audit trail (placeholders).
 - `projections.json` — metrics, drivers, scenarios (placeholders).
-- `charts.json` — chart registry (placeholders).
+- `charts.json` — chart registry (includes chart explanations).
 - `tables.json` — projection table registry (placeholders).
 - `notes.md` — appendix and citation placeholders.
 

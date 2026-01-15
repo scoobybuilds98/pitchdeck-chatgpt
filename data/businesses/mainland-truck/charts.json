@@ -5,7 +5,21 @@
       "title": "Revenue Trend",
       "type": "line",
       "metrics": ["revenue"],
-      "notes": "Connects to projections metric ids."
+      "notes": "Tracks total revenue growth across the projection horizon as inventory intake and leasing utilization scale. Use this to validate top-line ramp assumptions and compare against scenario targets."
+    },
+    {
+      "id": "gross-margin",
+      "title": "Gross Margin Profile",
+      "type": "line",
+      "metrics": ["grossMargin"],
+      "notes": "Shows gross margin expansion as service attach rate increases and parts revenue grows. This line should trend upward as higher-margin services scale."
+    },
+    {
+      "id": "unit-volume",
+      "title": "Unit Volume",
+      "type": "bar",
+      "metrics": ["unitVolume"],
+      "notes": "Visualizes total unit volume by year to confirm fleet intake assumptions and validate that volume growth matches revenue expansion."
     }
   ]
 }
